@@ -22,6 +22,8 @@ function App() {
       })
       .finally(() => setLoading(false));
   }, []);
+  console.log("Running the application")
+  console.log(loading)
 
   return !loading ? (
     <div className="min-h-screen min-w-min bg-slate-400 flex flex-wrap flex-col justify-center align-middle">

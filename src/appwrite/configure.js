@@ -75,7 +75,7 @@ export class Service {
   }
 
   //   File related services
-  async createFile(file) {
+  async uploadFile(file) {
     try {
       return await this.storage.createFile(
         conf.appwriteBucketId,
