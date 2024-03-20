@@ -1,18 +1,18 @@
 import React from "react";
 
-const Button = (
+export default function Button(
   {
+    children,
     type = "button",
     className = "",
-    children,
     bgColor = "bg-blue-600",
     textColor = "text-white",
     ...props
   }
-) => {
+) {
   return (
     <button
-      className={`${className} ${bgColor} ${textColor} px-4 py-2 rounded-xl`}
+      className={` px-4 py-2 rounded-xl ${className} ${bgColor} ${textColor}`}
       {...props}
     >
       {children}
@@ -20,4 +20,3 @@ const Button = (
   );
 };
 
-export default Button;

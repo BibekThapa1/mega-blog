@@ -1,18 +1,19 @@
 // This file include services relaating to uploading and creating the file and databases.
 
 import conf from "../conf/config";
-import { Databases, Client, ID } from "appwrite";
+import { Databases, Client, ID, Storage, Query } from "appwrite";
 
 export class Service {
   client = new Client();
   databases;
-  storage;
+  bucket;
+
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId);
     this.databases = new Databases(this.client);
-    this.storage = new Databases(this.client);
+    this.bucket = new Storage(this.client);
   }
 
   async createPost({ title, content, slug, featuredImage, status, userId }) {
@@ -47,7 +48,9 @@ export class Service {
           content,
         }
       );
-    } catch (error) {}
+    } catch (error) {
+      console.log("Appwrite Error: UpdatePost Method", error);
+    }
   }
 
   async deletePost(slug) {
@@ -57,12 +60,14 @@ export class Service {
         conf.appwriteCollectionId,
         slug
       );
+      return true
     } catch (error) {
+      return false
       console.log("Appwrite Error: DeletePost Method", error);
     }
   }
 
-  async getPost() {
+  async getPost(slug) {
     try {
       return await this.databases.getDocument(
         conf.appwriteDatabaseId,
@@ -74,10 +79,23 @@ export class Service {
     }
   }
 
+  async getPosts(queries = [Query.equal("status", "active")]) {
+    try {
+      return this.databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        queries         
+      );
+    } catch (error) {
+      console.log("Appwrite Error: " + error);
+      return false;
+    }
+  }
+
   //   File related services
   async uploadFile(file) {
     try {
-      return await this.storage.createFile(
+      return await this.bucket.createFile(
         conf.appwriteBucketId,
         ID.unique(),
         file
@@ -90,7 +108,7 @@ export class Service {
 
   async deleteFile(fileId) {
     try {
-      await this.storage.deleteFile(conf.appwriteBucketId, fileId);
+      await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
       return true;
     } catch (error) {
       console.log("Appwrite Error: deleteFile Method", error);
@@ -98,8 +116,8 @@ export class Service {
     }
   }
 
-  async getFilePreview(fileId) {
-      return this.storage.getFilePreview(conf.appwriteBucketId, fileId);
+   getFilePreview(fileId) {
+    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
   }
 }
 

@@ -1,41 +1,52 @@
-import React, { useEffect } from 'react'
-import service from "../appwrite/configure"
-import { PostCard ,Container} from '../../../chai/src/components'
+import React, { useEffect, useState } from "react";
+import service from "../appwrite/configure";
+import { PostCard, Container } from "../components/index";
+import { useSelector } from "react-redux";
+import {useNavigate , Link} from "react-router-dom"
 
 const Home = () => {
+  const [posts, setPosts] = useState([]);
+  const authStatus = useSelector((state) => state.auth.status);
+  const [error, setError] = useState(false)
+  const navigate = useNavigate()
 
-    const [posts, setPosts] = useState([])
-    useEffect(() => {
-      service.getPost()
-      .then((data)=>{
-        console.log(data)
-       if(data) setPosts(data.documents)
-      })
-    }, [])
-    
-   if(data.length === 0){
+  useEffect(() => {
+    service.getPosts().then((data) => {
+      if (data) setPosts(data.documents);
+    });
+  }, []);
+
+  if (authStatus===false) {
     return (
-        <div
-        className='text-black font-mono p-6'>
-            <p className='font-bold'>Please Login to Read Posts</p>
-        </div>
-    )
-   }
-   return (
-    <div className='w-full py-5'>
-        <Container>
-            <div className='flex flex-wrap'>
-                {
-                    posts.map((post)=>(
-                        <PostCard 
-                        {...post}
-                        />
-                    ))
-                }
-            </div>
-        </Container>
-    </div>
-   )   
-}
+      <div className="flex justify-center align-middle text-black font-mono p-6 home-height">
+        <p className="font-bold text-5xl">Please Login to Read Posts <Link to={"/login"} className="p-4 underline hover:bg-slate-200 rounded">Login</Link></p>
+      </div>
+    );
+  }
 
-export default Home
+  if(posts.length === 0 && authStatus){
+    return(
+        <div className="flex justify-center align-middle text-black font-mono p-6 home-height">
+        <p className="font-bold text-5xl">Click here to add post <span onClick={()=> navigate("/add-post")} className="cursor-pointer p-2 rounded-md font-bold italic text-2xl underline hover:bg-white">Add</span></p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="w-full py-5 min home-height">
+      <Container>
+        <div className="flex justify-center align-middle flex-wrap">
+          {posts.map((post) => (
+            <div key={post.$id}
+            className="h-full p-2"
+            >
+            <PostCard {...post} />
+            </div>
+          ))}
+        </div>
+      </Container>
+    </div>
+  );
+};
+
+export default Home;

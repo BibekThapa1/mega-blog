@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Input, Logo, Button } from "./index";
+import { Input, Logo, Button } from "./index.js";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../appwrite/auth";
@@ -12,60 +12,76 @@ const Signup = () => {
   const [error, setError] = useState("");
 
   const { handleSubmit, register } = useForm();
-  async function submit(data) {
+  
+  const create = async (data) => {
     setError("");
+
     try {
       const userData = await authService.createAccount(data);
-      if (userData) dispatch(login(userData));
+      if (userData) {
+        const userData = await authService.getUserAccount()
+        if(userData) dispatch(login(userData));
+      }
       navigate("/");
     } catch (error) {
-      setError(error);
+      setError(error.message);
     }
-  }
+  };
 
   return (
-    <div className="w-full flex">
-      <div className="p-3 text-black">
+    <div className="flex flex-wrap max-w-3xl	">
+      <div className="w-full p-3 text-black rounded-xl bg-slate-100 relative m-9">
+        <button
+          className="absolute right-9 top-5 font-bold text-2xl cursor-pointer border-2 border-black p-1 px-2 rounded"
+          onClick={() => navigate(-1)}
+        >
+          X
+        </button>
         <div className="p-2">
           <Logo width="100%" />
         </div>
-        <h2 className="mt-3 font-bold">Sign Up to Create An Account</h2>
-        <p className="font-bold">
+        <h2 className="text-xl mt-3 font-bold">Sign Up to Create An Account</h2>
+        <p className="font-bold text-xl">
           Already have an Account?&nbsp;
-          <Link to={"./Login.jsx"} className="font-bold text-2xl">
+          <Link to={"./Login.jsx"} className="font-bold text-2xl underline">
             Login
           </Link>
         </p>
         {error && <p className="space-y-4 text-xl font-bold">Error; {error}</p>}
-        <form className="mt-6" onSubmit={handleSubmit(submit)}>
+
+        <form className="mt-6" onSubmit={handleSubmit(create)}>
           <div className="space-y-3">
             <Input
               label="Full Name: "
-              type="text"
+              placeholder="Enter Your full name"
               {...register("name", {
                 required: true,
               })}
             />
             <Input
-              label="Email"
+              label="Email :"
               type="email"
+              placeholder='Enter your email'
               {...register("email", {
                 required: true,
                 validate: {
-                  matchPattern: (value) =>
-                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test() ||
-                    "Email Address Must Be a Valid Address",
+                  matchPatern: (value) =>
+                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                    "Email address must Be a valid address",
                 },
               })}
             />
             <Input
-              label="Password"
+              label="Password :"
               type="password"
+              placeholder="Enter your password"
               {...register("password", {
                 required: true,
               })}
-            />
-            <Button type="submit" className="mt-4" />
+            / >
+            <Button type="submit" className="mt-4 cursor-default">
+              Submit
+            </Button>
           </div>
         </form>
       </div>

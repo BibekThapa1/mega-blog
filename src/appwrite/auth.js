@@ -12,7 +12,7 @@ export class AuthService {
     this.account = new Account(this.client);
   }
 
-  async createAccount(email, password, name) {
+  async createAccount({email, password, name}) {
     try {
       const userId = await this.account.create(
         ID.unique(),
@@ -27,38 +27,37 @@ export class AuthService {
         return userId;
       }
     } catch (error) {
-      throw error;
+      console.log("Apprite CreateAccount:",error);
     }
   }
 
-  async login(email, password) {
+  async login({email, password}) {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
       throw new error;
     }
   }
-  
-  async getUserAccount(){
+
+  async getUserAccount() {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log("Appwrite service : Error", error)
+      console.log("Appwrite service : Error", error);
     }
+    return null
   }
 
-  async logout(){
-    try{
-      await this.account.deleteSessions()
+  async logout() {
+    try {
+      await this.account.deleteSessions();
+    } catch (error) {
+      console.log("Appwrite service : Error", error);
     }
-    catch(error){
-      console.log("Appwrite service : Error", error)
-    }
-  };
+  }
 }
 const authService = new AuthService();
 export default authService;
-
 
 // const client = new Client()
 //   .setEndpoint("https://cloud.appwrite.io/v1") // Your API Endpoint

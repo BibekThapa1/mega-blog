@@ -1,15 +1,20 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import authService from '../../appwrite/auth';
-import { logout } from '../../store/authSlice';
+import {useNavigate} from "react-router-dom"
+import { logout as storeLogout } from '../../store/authSlice';
 import Button from '../Button';
 
 const Logout = () => {
    const dispatch = useDispatch();
+   const navigate = useNavigate();
+
    async  function logout(){
+    navigate("/")
+
     await authService.logout()
     .then(()=>{
-        dispatch(logout())
+        dispatch(storeLogout());
     })
    }
 
@@ -17,8 +22,11 @@ const Logout = () => {
   return (
     <div>
        <Button 
-       className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
-       onClick={logout}       
+       className='m-3 duration-200 hover:bg-blue-100 rounded-full	'
+       onClick={()=>{
+        logout();
+
+       }}       
        >Logout</Button>
     </div>
   )

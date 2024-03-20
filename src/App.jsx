@@ -3,11 +3,10 @@ import { Header, Footer } from "./components";
 import authService from "./appwrite/auth";
 import { useDispatch } from "react-redux";
 import { login, logout } from "./store/authSlice";
-
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [login, setLogin] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,20 +14,20 @@ function App() {
       .getUserAccount()
       .then((userData) => {
         if (userData) {
-          dispatch(login(userData));
+          dispatch(login({ userData }));
         } else {
           dispatch(logout());
         }
       })
       .finally(() => setLoading(false));
   }, []);
-  console.log("Running the application")
-  console.log(loading)
 
   return !loading ? (
-    <div className="min-h-screen min-w-min bg-slate-400 flex flex-wrap flex-col justify-center align-middle">
+    <div className="min-h-screen min-w-min bg-slate-400 flex flex-wrap flex-col">
       <Header />
-      TO BE DONE {/* <Outline /> */}
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   ) : null;

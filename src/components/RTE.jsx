@@ -5,16 +5,17 @@ import { Controller } from "react-hook-form";
 const RTE = ({ control, name, label, defaultValue = "" }) => {
   return (
     <div className="w-full ">
-        {/* Check wether the label button is working properly or not */}
-        {label && <label className="p-3 inline-block">{label}</label>}
+      {/* Check wether the label button is working properly or not */}
+      {label && <label className="p-3 inline-block">{label}</label>}
       <Controller
         name={name || "content"}
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
+            apiKey="nufz23yrqch3khwgqehoell65ux6ya3zzdae53jobmjtbiow"
             initialValue={defaultValue || ""}
             init={{
-                // TODO 
+              // TODO
               initialValue: defaultValue,
               height: "500",
               menubar: true,
