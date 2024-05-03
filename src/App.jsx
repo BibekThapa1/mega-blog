@@ -26,11 +26,11 @@ function App() {
     <div className="min-h-screen min-w-min bg-slate-400 flex flex-wrap flex-col">
       <Header />
       <main>
-        <Outlet />
+       TODO: <Outlet />
       </main>
       <Footer />
     </div>
-  ) : null;
+  ) : <h1 className="text-xl">Loading ...</h1>;
 }
 
 export default App;

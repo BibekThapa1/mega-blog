@@ -6,11 +6,7 @@ const Input = React.forwardRef(function Input(
   ref
 ) {
   const id = useId();
-  const [passView, setPassView] = useState(false)
 
-  function changePassView(){
-    setPassView(!passView)
-  }
 
   return (
     <div className="w-full">
@@ -21,15 +17,13 @@ const Input = React.forwardRef(function Input(
       )}
       <div className="flex justify-between bg-white rounded-xl">
       <input
-        type={passView?"text":type}
+        type={type}
         className={`${className} p-2 rounded-lg  text-black w-full`}
         ref={ref}
         id={id}
         {...props}
       />
-      {type==="password" && <button type="button" onClick={changePassView}
-      className="m-1 mr-3 rounded-md cursor-pointer bg-slate-100"
-      >show</button>}
+      
       </div>
     </div>
   );

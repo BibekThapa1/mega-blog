@@ -21,6 +21,7 @@ const PostForm = ({ post }) => {
     });
 
   async function submit(data) {
+    console.log(data)
     if (post) {
       const file = data.image[0]? await service.uploadFile(data.image[0])
         : null;
@@ -94,14 +95,7 @@ const PostForm = ({ post }) => {
           control={control}
           defaultValue={getValues("content")}
         />
-        <Input
-          className="rounded-xl"
-          label="Content :"
-          type="text"
-          {...register("content", {
-            required: true,
-          })}
-        />
+        
         <Input
           className="rounded-xl"
           type="file"

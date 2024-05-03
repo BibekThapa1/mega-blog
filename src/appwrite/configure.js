@@ -62,8 +62,8 @@ export class Service {
       );
       return true
     } catch (error) {
-      return false
       console.log("Appwrite Error: DeletePost Method", error);
+      return false;
     }
   }
 
@@ -76,6 +76,7 @@ export class Service {
       );
     } catch (error) {
       console.log("Appwrite Error: getPost Method", error);
+      return false;
     }
   }
 

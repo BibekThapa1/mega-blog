@@ -12,7 +12,7 @@ export class AuthService {
     this.account = new Account(this.client);
   }
 
-  async createAccount({email, password, name}) {
+  async createAccount({ email, password, name }) {
     try {
       const userId = await this.account.create(
         ID.unique(),
@@ -22,20 +22,21 @@ export class AuthService {
       );
       if (userId) {
         //  Call another method
+        console.log("Entered the userId section");
         return this.login({ email, password });
       } else {
         return userId;
       }
     } catch (error) {
-      console.log("Apprite CreateAccount:",error);
+      console.log("Apprite CreateAccount:", error);
     }
   }
 
-  async login({email, password}) {
+  async login({ email, password }) {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
-      throw new error;
+      throw new Error();
     }
   }
 
@@ -45,7 +46,7 @@ export class AuthService {
     } catch (error) {
       console.log("Appwrite service : Error", error);
     }
-    return null
+    return null;
   }
 
   async logout() {

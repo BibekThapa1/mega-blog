@@ -12,15 +12,17 @@ const Signup = () => {
   const [error, setError] = useState("");
 
   const { handleSubmit, register } = useForm();
-  
+
   const create = async (data) => {
     setError("");
 
     try {
       const userData = await authService.createAccount(data);
+      console.log(userData)
       if (userData) {
-        const userData = await authService.getUserAccount()
-        if(userData) dispatch(login(userData));
+        const userData = await authService.getUserAccount();
+        console.log(userData)
+        if (userData) dispatch(login(userData));
       }
       navigate("/");
     } catch (error) {
@@ -31,19 +33,14 @@ const Signup = () => {
   return (
     <div className="flex flex-wrap max-w-3xl	">
       <div className="w-full p-3 text-black rounded-xl bg-slate-100 relative m-9">
-        <button
-          className="absolute right-9 top-5 font-bold text-2xl cursor-pointer border-2 border-black p-1 px-2 rounded"
-          onClick={() => navigate(-1)}
-        >
-          X
-        </button>
+        
         <div className="p-2">
           <Logo width="100%" />
         </div>
         <h2 className="text-xl mt-3 font-bold">Sign Up to Create An Account</h2>
         <p className="font-bold text-xl">
           Already have an Account?&nbsp;
-          <Link to={"./Login.jsx"} className="font-bold text-2xl underline">
+          <Link to={"/login"} className="font-bold text-2xl underline">
             Login
           </Link>
         </p>
@@ -61,7 +58,7 @@ const Signup = () => {
             <Input
               label="Email :"
               type="email"
-              placeholder='Enter your email'
+              placeholder="Enter your email"
               {...register("email", {
                 required: true,
                 validate: {
@@ -78,8 +75,8 @@ const Signup = () => {
               {...register("password", {
                 required: true,
               })}
-            / >
-            <Button type="submit" className="mt-4 cursor-default">
+            />
+            <Button type="submit" className="mt-4 cursor-pointer">
               Submit
             </Button>
           </div>
