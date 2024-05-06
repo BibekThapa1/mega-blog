@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { Logo, Input, Button } from "./index";
 import authService from "../appwrite/auth";
 import { login as storeLogin } from "../store/authSlice";
+import "../App.css"
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -39,14 +41,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex max-w-3xl">
-      <div className="w-full text-black bg-gray-100 border-black/10 p-8 px-10 rounded-xl relative m-9">
-        <div className="w-full">
+    <div className="flex max-w-3xl login-component">
+      <div className="w-full text-black bg-gray-100 border-black/10 p-2  rounded-xl relative m-9">
+        <div className="w-full ">
           <span>
             <Logo width="100%" />
           </span>
-          <h2 className="text-center font-bold text-2xl">Login your account</h2>
-          <p className="text-center font-bold text-2xl">
+          <h2 className="text-center font-bold form-heading">Login your account</h2>
+          <p className="text-center font-bold form-heading">
             {" "}
             Dont&apos;t have an account ,&nbsp;
             <Link
@@ -62,7 +64,7 @@ const Login = () => {
             </p>
           )}
           <form onSubmit={handleSubmit(submit)} className="mt-6">
-            <div className="space-y-5">
+            <div className="space-y-5  flex flex-col justify-center align-middle">
               <Input
                 label="Email: "
                 type="email"
@@ -86,7 +88,7 @@ const Login = () => {
                   required: true,
                 })}
               />
-              <Button children="Login" className="py-3 font-bold"></Button>
+              <Button children="Login" className="py-3 font-bold self-center"></Button>
             </div>
           </form>
         </div>

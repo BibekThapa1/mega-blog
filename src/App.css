@@ -1,3 +1,36 @@
 .home-height{
     min-height: 60vh;
 }
+
+
+.not-auth-text{
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-heading{
+    font-size: 1.2rem;
+font-family: 'Gill Sans', 'Gill Sans MT', 'Times New Roman', Times, serif, 'Trebuchet MS', sans-serif;
+}
+
+@media (min-width:900px) {
+    .not-auth-text{
+        font-size: 3rem;
+    }
+    .login-component,.signup-component{
+        min-width: 50vw;
+    }
+    
+}
+@media (min-width:1200px)
+{
+    .login-component,.signup-component{
+        min-width: 47vw;
+        min-height: 50vh;
+    }
+    
+}
