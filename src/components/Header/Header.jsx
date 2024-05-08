@@ -51,7 +51,7 @@ const Header = () => {
                   <Button
                     onClick={() => navigate(icon.slug)}
                     children={icon.name}
-                    className="m-3 text-black text-xl hover:bg-blue-100 hover:text-black hover:transition rounded-full"
+                    className="m-3 text-black text-xl hover:bg-blue-100 rounded-full"
                   />
                 </li>
               ) : null
