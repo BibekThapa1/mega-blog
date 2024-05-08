@@ -22,7 +22,7 @@ const Logout = () => {
   return (
     <div>
        <Button 
-       className='m-3 duration-200 hover:bg-blue-100 rounded-full	'
+       className='m-3 duration-200 hover:bg-blue-100 hover:text-black text-xl rounded-full	'
        onClick={()=>{
         logout();
 
