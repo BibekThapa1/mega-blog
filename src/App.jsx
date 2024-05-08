@@ -26,11 +26,11 @@ function App() {
     <div className="min-h-screen min-w-min bg-slate-400 flex flex-wrap flex-col">
       <Header />
       <main>
-        <Outlet />
+       TODO: <Outlet />
       </main>
       <Footer />
     </div>
-  ) : <div className="text-xl min-h-screen min-w-full flex justify-center align-middle self-center"><h1 className="self-center">Loading ...</h1></div>;
+  ) : <h1 className="text-xl">Loading ...</h1>;
 }
 
 export default App;

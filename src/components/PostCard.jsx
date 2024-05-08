@@ -9,7 +9,7 @@ const PostCard = ({$id , title ,featuredImage}) => {
      <div className=''>
         <img src={`${service.getFilePreview(featuredImage)}`} alt={`${title}`} className='mb-2 max-h-44'  />
      </div>
-     <h2 className='text-black font-bold text-center'>{title}</h2>
+     <h2 className='text-black font-bold'>{title}</h2>
     </div>
     </Link>
   )

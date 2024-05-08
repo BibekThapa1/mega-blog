@@ -1,5 +1,6 @@
 .home-height {
     min-height: 60vh;
+<<<<<<< HEAD
 }
 
 
@@ -36,4 +37,6 @@
         min-width: 47vw;
         min-height: 50vh;
     }
+=======
+>>>>>>> parent of 40782f4 (Some UI is made responsive)
 }

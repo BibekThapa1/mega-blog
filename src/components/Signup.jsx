@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { login } from "../store/authSlice";
-import "../App.css"
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -32,14 +31,14 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex-wrap max-w-3xl	signup-component">
-      <div className="w-full p-2 text-black rounded-xl bg-slate-100 relative m-9 flex justify-center align-middle flex-col">
+    <div className="flex flex-wrap max-w-3xl	">
+      <div className="w-full p-3 text-black rounded-xl bg-slate-100 relative m-9">
         
         <div className="p-2">
           <Logo width="100%" />
         </div>
-        <h2 className="form-heading  mt-3 font-bold self-center">Sign Up to Create An Account</h2>
-        <p className="form-heading font-bold self-center">
+        <h2 className="text-xl mt-3 font-bold">Sign Up to Create An Account</h2>
+        <p className="font-bold text-xl">
           Already have an Account?&nbsp;
           <Link to={"/login"} className="font-bold text-2xl underline">
             Login
@@ -48,7 +47,7 @@ const Signup = () => {
         {error && <p className="space-y-4 text-xl font-bold">Error; {error}</p>}
 
         <form className="mt-6" onSubmit={handleSubmit(create)}>
-          <div className="space-y-3 flex flex-col justify-center align-middle">
+          <div className="space-y-3">
             <Input
               label="Full Name: "
               placeholder="Enter Your full name"
@@ -77,7 +76,7 @@ const Signup = () => {
                 required: true,
               })}
             />
-            <Button type="submit" className="mt-4 cursor-pointer self-center">
+            <Button type="submit" className="mt-4 cursor-pointer">
               Submit
             </Button>
           </div>

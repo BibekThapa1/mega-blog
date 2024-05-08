@@ -3,7 +3,6 @@ import service from "../appwrite/configure";
 import { PostCard, Container } from "../components/index";
 import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import "../App.css"
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -18,8 +17,8 @@ const Home = () => {
 
   if (!authStatus) {
     return (
-      <div className="not-auth-text">
-        <h1 className=" text-black "> Please login to read the posts</h1>
+      <div className="min-h-96">
+        <h1 className=" text-black text-xl"> Please login to read the posts</h1>
       </div>
     );
   }
