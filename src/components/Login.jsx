@@ -13,16 +13,11 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const submit = async (data) => {
-    console.log(data);
     setError("");
     try {
       const session = await authService.login(data);
-      console.log(session);
       if (session) {
         const userData = await authService.getUserAccount();
-        console.log(userData);
-        console.log(session);
-
         if (userData) {
           dispatch(storeLogin(userData));
           navigate("/");
@@ -39,8 +34,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex max-w-3xl">
-      <div className="w-full text-black bg-gray-100 border-black/10 p-8 px-10 rounded-xl relative m-9">
+    <div className="flex justify-center align-middle max-w-3xl self-center">
+      <div className="w-full text-black flex justify-center align-middle bg-gray-100 border-black/10 p-8 px-10 rounded-xl relative m-9">
         <div className="w-full">
           <span>
             <Logo width="100%" />
@@ -62,7 +57,7 @@ const Login = () => {
             </p>
           )}
           <form onSubmit={handleSubmit(submit)} className="mt-6">
-            <div className="space-y-5">
+            <div className="space-y-5 flex flex-col">
               <Input
                 label="Email: "
                 type="email"
@@ -86,7 +81,7 @@ const Login = () => {
                   required: true,
                 })}
               />
-              <Button children="Login" className="py-3 font-bold"></Button>
+              <Button children="Login" className="py-3 px-8 font-bold self-center"></Button>
             </div>
           </form>
         </div>

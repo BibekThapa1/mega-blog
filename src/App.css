@@ -1,8 +1,9 @@
-.home-height {
-    min-height: 60vh;
+.home{
+    min-height: 80vh;
 }
-
-
+/* .post-form{
+    min-width: 100vw;
+} */
 .not-auth-text {
     min-height: 80vh;
     display: flex;
@@ -21,7 +22,12 @@
     .not-auth-text {
         font-size: 3rem;
     }
-
+   .all-post{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+   }
     .login-component,
     .signup-component {
         min-width: 50vw;

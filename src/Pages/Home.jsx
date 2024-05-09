@@ -17,8 +17,11 @@ const Home = () => {
 
   if (!authStatus) {
     return (
-      <div className="min-h-96">
-        <h1 className=" text-black text-xl"> Please login to read the posts</h1>
+      <div className="min-h-96 flex justify-center align-middle">
+        <h1 className=" text-black text-2xl self-center">
+          {" "}
+          Please login to read the posts
+        </h1>
       </div>
     );
   }
@@ -26,7 +29,7 @@ const Home = () => {
   if (posts.length === 0 && authStatus) {
     return (
       <div className="flex justify-center align-middle text-black font-mono p-6 home-height">
-        <p className="font-bold text-5xl">
+        <p className="font-bold text-3xl">
           Click here to add post{" "}
           <span
             onClick={() => navigate("/add-post")}

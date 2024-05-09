@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "../index";
 import service from "../../appwrite/configure";
 import { useNavigate } from "react-router-dom";
-import {useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 const PostForm = ({ post }) => {
   const navigate = useNavigate();
@@ -21,9 +21,9 @@ const PostForm = ({ post }) => {
     });
 
   async function submit(data) {
-    console.log(data)
     if (post) {
-      const file = data.image[0]? await service.uploadFile(data.image[0])
+      const file = data.image[0]
+        ? await service.uploadFile(data.image[0])
         : null;
       if (file) {
         await service.deleteFile(post.featuredImage);
@@ -70,8 +70,8 @@ const PostForm = ({ post }) => {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap m-4">
-      <div className="w-2/3 px-2 flex gap-4 flex-col">
+    <form onSubmit={handleSubmit(submit)} className="post-form flex flex-wrap justify-center align-middle w-full m-4">
+      <div className=" flex gap-4 flex-wrap flex-col lg:w-2/3">
         <Input
           className="rounded-xl"
           label="Title :"
@@ -95,7 +95,7 @@ const PostForm = ({ post }) => {
           control={control}
           defaultValue={getValues("content")}
         />
-        
+
         <Input
           className="rounded-xl"
           type="file"
@@ -125,7 +125,7 @@ const PostForm = ({ post }) => {
           bgColor={post ? "bg-green-500" : undefined}
           className="w-full"
         >
-        {post?"Update":"Submit"}
+          {post ? "Update" : "Submit"}
         </Button>
       </div>
     </form>

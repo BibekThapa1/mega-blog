@@ -1,17 +1,10 @@
-import React from 'react'
-import {Signup as SignUpComponent, Container } from '../components'
-
+import React from "react";
+import { Signup as SignUpComponent, Container } from "../components";
 
 const SignUp = () => {
   return (
-    <div>
-    <div>
-        <div className="py-2">
-            <SignUpComponent/>
-        </div>
-    </div>
-    </div>
+  <SignUpComponent />
   )
-}
+};
 
-export default SignUp
+export default SignUp;

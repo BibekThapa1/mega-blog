@@ -22,7 +22,6 @@ export class AuthService {
       );
       if (userId) {
         //  Call another method
-        console.log("Entered the userId section");
         return this.login({ email, password });
       } else {
         return userId;

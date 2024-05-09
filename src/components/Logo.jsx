@@ -1,8 +1,11 @@
 import React from 'react'
+import logo from "../images/logo.png"
 
 const Logo = ({width = "100px"}) => {
   return (
-    <div className='font-bold border-2 inline-block m-auto'>Logo</div>
+    <div className='font-bold border-none inline-block m-auto '>
+      <img src={logo}  className='h-14 rounded-full object-contain' alt="" />
+    </div>
   )
 }
 

@@ -36,8 +36,8 @@ const Post = () => {
 
   return post ? (
     <div>
-      <Container>
-        <div className="flex flex-wrap ">
+      <Container className="flex justify-center align-middle h-full">
+        <div className="flex flex-wrap justify-center align-middle self-center">
           <div className="p-2 bg-slate-200 rounded-xl">
             <img
               src={service.getFilePreview(post.featuredImage)}
@@ -52,7 +52,7 @@ const Post = () => {
             </div>
             <div className="p-4">
               {isAuthor ? (
-                <div>
+                <div className="flex justify-center align-middle gap-7">
                   <Button onClick={deletePost} className="bg-blue-400">
                     Delete
                   </Button>

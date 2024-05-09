@@ -3,7 +3,7 @@ import {PostForm ,Container} from "../components/index"
 
 const AddPost = () => {
   return (
-    <Container>
+    <Container className="flex justify-center align-middle">
         <PostForm/>
     </Container>
   )
